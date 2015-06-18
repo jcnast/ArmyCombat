@@ -192,9 +192,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ip: 192.168.1.133
+  guid: 
   MSport: 23466
   FCport: 50005
-  tester: {fileID: 100136, guid: c0157131843420e4c8232156ad3d3108, type: 3}
+  tester: {fileID: 184126, guid: 295a6bc1ea7f7ad4b97a0fbfbba9053b, type: 2}
 --- !u!114 &1084885224
 MonoBehaviour:
   m_ObjectHideFlags: 0
