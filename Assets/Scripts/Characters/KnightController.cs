@@ -88,7 +88,9 @@ public class KnightController : BaseCharacter {
 		}
 	}
 
-	public bool jumping = false;
+	public bool attack = false;
+	public bool attacking = false;
+	public bool attacked = false;
 	protected override void AttackUpdate(){
 		base.AttackUpdate();
 		if(!canAttack){
@@ -101,21 +103,28 @@ public class KnightController : BaseCharacter {
 		}else{
 			_Animator.SetBool("Walking", false);
 			_Animator.SetBool("Running", false);
+			if(!attacking){
+				attacked = false;
+			}
 			if(stopAttacking){
 				_Animator.ResetTrigger("Attacking");
 
 				stopAttacking = false;
 			}else{
 				_Animator.SetTrigger("Attacking");
+				if(attack && !attacked){
+					attackTarget.GetComponent<BaseCharacter>().ApplyDamage(damage);
+					attacked = true;
+				}
 			}
 		}
 	}
 
 	public override void ApplyDamage(float damage){
 		if(specialActive){
-			health -= damage * dmgReduction * blockMod;
+			health -= damage - (damage * dmgReduction * blockMod);
 		}else{
-			health -= damage * dmgReduction;
+			health -= damage - (damage * dmgReduction);
 		}
 		if(health <= 0){
 			curState = CharacterState.Dead;

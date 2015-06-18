@@ -78,26 +78,40 @@ public class BruteController : BaseCharacter {
 		}
 	}
 
+	public bool attack = false;
+	public bool attacking = false;
+	public bool attacked = false;
 	protected override void AttackUpdate(){
 		base.AttackUpdate();
 		if(!canAttack){
 			if(jumpAttack && Vector3.Distance(transform.position, attackTarget.position) <= jumpAttackRange){
 				_Animator.SetBool("Running", false);
 				_Animator.SetTrigger("JumpAttack");
+				if(attack && !attacked){
+					attackTarget.GetComponent<BaseCharacter>().ApplyDamage(damage);
+					attacked = true;
+				}
 				specialActive = false;
 				jumpAttack = false;
 			}else{
 				_Animator.SetBool("Running", true);
 			}
 		}else{
+			if(!attacking){
+				attacked = false;
+			}
 			_Animator.SetBool("Running", false);
 			if(stopAttacking){
-				_Animator.ResetTrigger("Attacking");
 				_Animator.ResetTrigger("JumpAttack");
+				_Animator.ResetTrigger("Attacking");
 
 				stopAttacking = false;
 			}else{
 				_Animator.SetTrigger("Attacking");
+				if(attack && !attacked){
+					attackTarget.GetComponent<BaseCharacter>().ApplyDamage(damage);
+					attacked = true;
+				}
 			}
 		}
 	}

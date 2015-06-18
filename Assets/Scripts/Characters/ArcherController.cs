@@ -125,14 +125,14 @@ public class ArcherController : BaseCharacter {
 				}
 				fireCount--;
 			}
-			if(specialActive){
-				_Animator.SetTrigger("Drawing");
+			//if(specialActive){
+				//_Animator.SetTrigger("Drawing");
 				//_Animator.SetTrigger("Aiming");
 				//_Animator.SetTrigger("Recovering");
-			}else{
-				_Animator.SetTrigger("Drawing");
+			//}else{
+			_Animator.SetTrigger("Drawing");
 				//_Animator.SetTrigger("Recovering");
-			}
+			//}
 		}
 	}
 }

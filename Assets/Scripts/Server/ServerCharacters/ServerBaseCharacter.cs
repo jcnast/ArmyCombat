@@ -160,7 +160,7 @@ public class ServerBaseCharacter : MonoBehaviour {
 	}
 
 	public virtual void ApplyDamage(float damage){
-		health -= damage * dmgReduction;
+		health -= damage - (dmgReduction * damage);
 		if(health <= 0){
 			curState = CharacterState.Dead;
 		}

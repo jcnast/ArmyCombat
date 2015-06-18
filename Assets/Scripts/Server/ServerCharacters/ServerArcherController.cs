@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ServerArcherController : BaseCharacter {
+public class ServerArcherController : ServerBaseCharacter {
 
 	public float attackMod;
 
@@ -125,14 +125,14 @@ public class ServerArcherController : BaseCharacter {
 				}
 				fireCount--;
 			}
-			if(specialActive){
-				_Animator.SetTrigger("Drawing");
+			//if(specialActive){
+				//_Animator.SetTrigger("Drawing");
 				//_Animator.SetTrigger("Aiming");
 				//_Animator.SetTrigger("Recovering");
-			}else{
+			//}else{
 				_Animator.SetTrigger("Drawing");
 				//_Animator.SetTrigger("Recovering");
-			}
+			//}
 		}
 	}
 }

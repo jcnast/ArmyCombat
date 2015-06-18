@@ -13,6 +13,7 @@ GameObject:
   - 54: {fileID: 5474514}
   - 136: {fileID: 13690514}
   - 114: {fileID: 11410568}
+  - 148: {fileID: 14853396}
   m_Layer: 0
   m_Name: NetworkArrow
   m_TagString: Untagged
@@ -106,6 +107,18 @@ CapsuleCollider:
   m_Height: .75
   m_Direction: 2
   m_Center: {x: 0, y: .00665878737, z: .0695921779}
+--- !u!148 &14853396
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145486}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 482384}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

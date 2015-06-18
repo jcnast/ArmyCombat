@@ -146,21 +146,22 @@ public class BaseCharacter : MonoBehaviour {
 		if(attackTarget == null){
 			curState = CharacterState.Idle;
 			stopAttacking = true;
-		}
-		if(Vector3.Distance(transform.position, attackTarget.position) >= range){
-			canAttack = false;
 		}else{
-			canAttack = true;
-		}
-		if(!canAttack){
-			_Rigidbody.velocity = (attackTarget.position - transform.position).normalized * RunSpeed;
-		}else{
-			_Rigidbody.velocity = Vector3.zero;
+			if(Vector3.Distance(transform.position, attackTarget.position) >= range){
+				canAttack = false;
+			}else{
+				canAttack = true;
+			}
+			if(!canAttack){
+				_Rigidbody.velocity = (attackTarget.position - transform.position).normalized * RunSpeed;
+			}else{
+				_Rigidbody.velocity = Vector3.zero;
+			}
 		}
 	}
 
 	public virtual void ApplyDamage(float damage){
-		health -= damage * dmgReduction;
+		health -= damage - (dmgReduction * damage);
 		if(health <= 0){
 			curState = CharacterState.Dead;
 		}
