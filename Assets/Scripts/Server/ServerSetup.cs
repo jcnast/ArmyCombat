@@ -4,6 +4,7 @@ using System.Collections;
 public class ServerSetup : MonoBehaviour {
 
 	public string ip;
+	public string guid;
 	public int MSport;
 	public int FCport;
 
@@ -55,7 +56,7 @@ public class ServerSetup : MonoBehaviour {
 
 		if (GUILayout.Button("Connect to Server")) {
 			Debug.Log("connecting to server");
-			//Network.Connect(ip, port);
+			Network.Connect(guid);
 			Debug.Log(Network.isClient);
 			Debug.Log(Network.isServer);
 		}
