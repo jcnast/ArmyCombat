@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BruteController : BaseCharacter {
+public class ServerBruteController : BaseCharacter {
 
 	public bool jumpAttack = false;
 	public float jumpAttackRange = 0;

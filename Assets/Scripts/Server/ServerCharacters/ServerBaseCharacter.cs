@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BaseCharacter : MonoBehaviour {
+public class ServerBaseCharacter : MonoBehaviour {
 
 	[HideInInspector]
 	public enum CharacterState{
@@ -171,13 +171,13 @@ public class BaseCharacter : MonoBehaviour {
 		Vector3 syncPosition = Vector3.zero;
 		if (stream.isWriting)
 		{
-			syncPosition = rigidbody.position;
+			syncPosition = transform.position;
 			stream.Serialize(ref syncPosition);
 		}
 		else
 		{
 			stream.Serialize(ref syncPosition);
-			rigidbody.position = syncPosition;
+			transform.position = syncPosition;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KnightController : BaseCharacter {
+public class ServerKnightController : BaseCharacter {
 
 	public GameObject shieldEffect;
 	public MeshRenderer shieldEffectRenderer;

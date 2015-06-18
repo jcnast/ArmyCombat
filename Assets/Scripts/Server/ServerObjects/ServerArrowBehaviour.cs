@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArrowBehaviour : MonoBehaviour {
+public class ServerArrowBehaviour : MonoBehaviour {
 
 	public float damage = 5;
 

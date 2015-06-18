@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArcherController : BaseCharacter {
+public class ServerArcherController : BaseCharacter {
 
 	public float attackMod;
 
