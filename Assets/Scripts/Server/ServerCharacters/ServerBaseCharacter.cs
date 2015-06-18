@@ -169,15 +169,22 @@ public class ServerBaseCharacter : MonoBehaviour {
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
 		Vector3 syncPosition = Vector3.zero;
+		CharacterState syncState;
 		if (stream.isWriting)
 		{
 			syncPosition = transform.position;
 			stream.Serialize(ref syncPosition);
+
+			syncState = curState;
+			tream.Serialize(ref syncState);
 		}
 		else
 		{
 			stream.Serialize(ref syncPosition);
 			transform.position = syncPosition;
+
+			stream.Serialize(ref syncState);
+			curState = syncState;
 		}
 	}
 }
