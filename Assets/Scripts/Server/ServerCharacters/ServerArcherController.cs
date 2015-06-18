@@ -96,6 +96,7 @@ public class ServerArcherController : ServerBaseCharacter {
 		}
 	}
 
+	public float distHeightRatio = 0;
 	public bool fire = false;
 	public bool firing = false;
 	private int fireCount = 1;
@@ -118,6 +119,7 @@ public class ServerArcherController : ServerBaseCharacter {
 				GameObject arrow = (GameObject) Instantiate(Arrow, ReleasePoint.position, transform.rotation);
 				ArrowBehaviour arrowInfo = arrow.GetComponent<ArrowBehaviour>();
 				arrowInfo.target = attackTarget;
+				arrowInfo.maxHeight = Vector3.Distance(transform.position, attackTarget.transform.position)/distHeightRatio;
 				if(specialActive){
 					arrowInfo.damage = damage * attackMod;
 				}else{
@@ -130,7 +132,7 @@ public class ServerArcherController : ServerBaseCharacter {
 				//_Animator.SetTrigger("Aiming");
 				//_Animator.SetTrigger("Recovering");
 			//}else{
-				_Animator.SetTrigger("Drawing");
+			_Animator.SetTrigger("Drawing");
 				//_Animator.SetTrigger("Recovering");
 			//}
 		}

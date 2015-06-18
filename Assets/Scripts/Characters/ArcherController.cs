@@ -96,6 +96,7 @@ public class ArcherController : BaseCharacter {
 		}
 	}
 
+	public float distHeightRatio = 0;
 	public bool fire = false;
 	public bool firing = false;
 	private int fireCount = 1;
@@ -118,6 +119,7 @@ public class ArcherController : BaseCharacter {
 				GameObject arrow = (GameObject) Instantiate(Arrow, ReleasePoint.position, transform.rotation);
 				ArrowBehaviour arrowInfo = arrow.GetComponent<ArrowBehaviour>();
 				arrowInfo.target = attackTarget;
+				arrowInfo.maxHeight = Vector3.Distance(transform.position, attackTarget.transform.position)/distHeightRatio;
 				if(specialActive){
 					arrowInfo.damage = damage * attackMod;
 				}else{

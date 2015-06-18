@@ -2199,6 +2199,7 @@ MonoBehaviour:
   Bow: {fileID: 494734}
   Arrow: {fileID: 145486, guid: 7c3fc1de171bf2445adca09ac63e755b, type: 2}
   ReleasePoint: {fileID: 453834}
+  distHeightRatio: 3
   fire: 0
   firing: 0
 --- !u!114 &11446962

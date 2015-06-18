@@ -2144,7 +2144,7 @@ MonoBehaviour:
   health: 100
   dmgReduction: .5
   damage: 10
-  range: 1
+  range: 2
   WalkSpeed: 2
   RunSpeed: 5
   LongWaitTime: 10
@@ -2152,7 +2152,9 @@ MonoBehaviour:
   shieldEffect: {fileID: 128738}
   shieldEffectRenderer: {fileID: 0}
   blockMod: 1.5
-  jumping: 0
+  attack: 0
+  attacking: 0
+  attacked: 0
 --- !u!136 &13625966
 CapsuleCollider:
   m_ObjectHideFlags: 1

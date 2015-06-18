@@ -2255,13 +2255,16 @@ MonoBehaviour:
   health: 100
   dmgReduction: 0
   damage: 20
-  range: 2
+  range: 3
   WalkSpeed: 3
   RunSpeed: 7
   LongWaitTime: 10
   curState: 0
   jumpAttack: 0
   jumpAttackRange: 13
+  attack: 0
+  attacking: 0
+  attacked: 0
 --- !u!136 &13688688
 CapsuleCollider:
   m_ObjectHideFlags: 1

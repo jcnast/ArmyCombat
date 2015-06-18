@@ -88,12 +88,14 @@ public class BaseCharacter : MonoBehaviour {
 	}
 
 	protected virtual void MoveClick(){
+		attackTarget = null;
 		curState = CharacterState.Walking;
 		moveTarget = input.GetClickPosn;
 		transform.LookAt(moveTarget);
 	}
 
 	protected virtual void MoveQuicklyClick(){
+		attackTarget = null;
 		curState = CharacterState.Running;
 		moveTarget = input.GetClickPosn;
 		transform.LookAt(moveTarget);
@@ -124,6 +126,7 @@ public class BaseCharacter : MonoBehaviour {
 
 			_Rigidbody.velocity = Vector3.zero;
 		}else{
+			transform.LookAt(attackTarget);
 			_Rigidbody.velocity = (moveTarget - transform.position).normalized * WalkSpeed;
 		}
 	}
@@ -136,6 +139,7 @@ public class BaseCharacter : MonoBehaviour {
 
 			_Rigidbody.velocity = Vector3.zero;
 		}else{
+			transform.LookAt(attackTarget);
 			_Rigidbody.velocity = (moveTarget - transform.position).normalized * RunSpeed;
 		}
 	}
@@ -153,6 +157,7 @@ public class BaseCharacter : MonoBehaviour {
 				canAttack = true;
 			}
 			if(!canAttack){
+				transform.LookAt(attackTarget);
 				_Rigidbody.velocity = (attackTarget.position - transform.position).normalized * RunSpeed;
 			}else{
 				_Rigidbody.velocity = Vector3.zero;
