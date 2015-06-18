@@ -14,7 +14,7 @@ GameObject:
   - 136: {fileID: 13690514}
   - 114: {fileID: 11410568}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: NetworkArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
