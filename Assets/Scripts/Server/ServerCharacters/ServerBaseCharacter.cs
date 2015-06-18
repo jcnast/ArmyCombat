@@ -166,17 +166,20 @@ public class ServerBaseCharacter : MonoBehaviour {
 		}
 	}
 
-	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
-	{
+	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){
 		Vector3 syncPosition = Vector3.zero;
-		CharacterState syncState;
+		int syncState = 0;
+		bool syncSpecial = false;
 		if (stream.isWriting)
 		{
 			syncPosition = transform.position;
 			stream.Serialize(ref syncPosition);
 
-			syncState = curState;
-			tream.Serialize(ref syncState);
+			syncState = StateToInt(curState);
+			stream.Serialize(ref syncState);
+
+			syncSpecial = specialActive;
+			stream.Serialize(ref syncSpecial);
 		}
 		else
 		{
@@ -184,7 +187,42 @@ public class ServerBaseCharacter : MonoBehaviour {
 			transform.position = syncPosition;
 
 			stream.Serialize(ref syncState);
-			curState = syncState;
+			curState = IntToState(syncState);
+
+			stream.Serialize(ref syncSpecial);
+			specialActive = syncSpecial;
+		}
+	}
+
+	int StateToInt(CharacterState state){
+		if(state == CharacterState.Idle){
+			return 0;
+		}else if(state == CharacterState.Walking){
+			return 1;
+		}else if(state == CharacterState.Running){
+			return 2;
+		}else if(state == CharacterState.Attacking){
+			return 3;
+		}else if(state == CharacterState.Dead){
+			return 4;
+		}else{
+			return -1;
+		}
+	}
+
+	CharacterState IntToState(int sint){
+		if(sint == 0){
+			return CharacterState.Idle;
+		}else if(sint == 1){
+			return CharacterState.Walking;
+		}else if(sint == 2){
+			return CharacterState.Running;
+		}else if(sint == 3){
+			return CharacterState.Attacking;
+		}else if(sint == 4){
+			return CharacterState.Dead;
+		}else{
+			return CharacterState.Idle;
 		}
 	}
 }
