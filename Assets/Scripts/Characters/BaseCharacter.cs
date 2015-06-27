@@ -171,4 +171,64 @@ public class BaseCharacter : MonoBehaviour {
 			curState = CharacterState.Dead;
 		}
 	}
+
+	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){
+		Vector3 syncPosition = Vector3.zero;
+		int syncState = 0;
+		bool syncSpecial = false;
+		if (stream.isWriting)
+		{
+			syncPosition = transform.position;
+			stream.Serialize(ref syncPosition);
+
+			syncState = StateToInt(curState);
+			stream.Serialize(ref syncState);
+
+			syncSpecial = specialActive;
+			stream.Serialize(ref syncSpecial);
+		}
+		else
+		{
+			stream.Serialize(ref syncPosition);
+			transform.position = syncPosition;
+
+			stream.Serialize(ref syncState);
+			curState = IntToState(syncState);
+
+			stream.Serialize(ref syncSpecial);
+			specialActive = syncSpecial;
+		}
+	}
+
+	int StateToInt(CharacterState state){
+		if(state == CharacterState.Idle){
+			return 0;
+		}else if(state == CharacterState.Walking){
+			return 1;
+		}else if(state == CharacterState.Running){
+			return 2;
+		}else if(state == CharacterState.Attacking){
+			return 3;
+		}else if(state == CharacterState.Dead){
+			return 4;
+		}else{
+			return -1;
+		}
+	}
+
+	CharacterState IntToState(int sint){
+		if(sint == 0){
+			return CharacterState.Idle;
+		}else if(sint == 1){
+			return CharacterState.Walking;
+		}else if(sint == 2){
+			return CharacterState.Running;
+		}else if(sint == 3){
+			return CharacterState.Attacking;
+		}else if(sint == 4){
+			return CharacterState.Dead;
+		}else{
+			return CharacterState.Idle;
+		}
+	}
 }
