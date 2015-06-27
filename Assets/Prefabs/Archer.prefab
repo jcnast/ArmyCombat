@@ -843,6 +843,7 @@ GameObject:
   - 136: {fileID: 13639742}
   - 114: {fileID: 11416584}
   - 114: {fileID: 11446962}
+  - 148: {fileID: 14809766}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Character
@@ -2524,6 +2525,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 6.88433647e-06, y: .283330113, z: .00977799296}
     m_Extent: {x: .905215383, y: .256975979, z: .188056588}
   m_DirtyAABB: 0
+--- !u!148 &14809766
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184126}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 414998}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
