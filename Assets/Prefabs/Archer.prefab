@@ -844,6 +844,7 @@ GameObject:
   - 114: {fileID: 11416584}
   - 114: {fileID: 11446962}
   - 148: {fileID: 14809766}
+  - 148: {fileID: 14813044}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Character
@@ -2534,6 +2535,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 414998}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14813044
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184126}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 11416584}
   m_ViewID:
     m_ID: 0
     m_Type: 0
