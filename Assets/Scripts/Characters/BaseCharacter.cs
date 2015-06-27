@@ -178,6 +178,8 @@ public class BaseCharacter : MonoBehaviour {
 		bool syncSpecial = false;
 		if (stream.isWriting)
 		{
+			Debug.Log("writing");
+
 			syncPosition = transform.position;
 			stream.Serialize(ref syncPosition);
 
@@ -187,8 +189,10 @@ public class BaseCharacter : MonoBehaviour {
 			syncSpecial = specialActive;
 			stream.Serialize(ref syncSpecial);
 		}
-		else
+		else if (stream.isReading)
 		{
+			Debug.Log("recieving");
+
 			stream.Serialize(ref syncPosition);
 			transform.position = syncPosition;
 
@@ -197,6 +201,10 @@ public class BaseCharacter : MonoBehaviour {
 
 			stream.Serialize(ref syncSpecial);
 			specialActive = syncSpecial;
+		}
+		else
+		{
+			Debug.Log("other?");
 		}
 	}
 
