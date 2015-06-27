@@ -173,15 +173,15 @@ public class BaseCharacter : MonoBehaviour {
 	}
 
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){
-		Vector3 syncPosition = Vector3.zero;
+		//Vector3 syncPosition = Vector3.zero;
 		int syncState = 0;
 		bool syncSpecial = false;
 		if (stream.isWriting)
 		{
 			Debug.Log("writing");
 
-			syncPosition = transform.position;
-			stream.Serialize(ref syncPosition);
+			//syncPosition = transform.position;
+			//stream.Serialize(ref syncPosition);
 
 			syncState = StateToInt(curState);
 			stream.Serialize(ref syncState);
@@ -193,8 +193,8 @@ public class BaseCharacter : MonoBehaviour {
 		{
 			Debug.Log("recieving");
 
-			stream.Serialize(ref syncPosition);
-			transform.position = syncPosition;
+			//stream.Serialize(ref syncPosition);
+			//transform.position = syncPosition;
 
 			stream.Serialize(ref syncState);
 			curState = IntToState(syncState);
