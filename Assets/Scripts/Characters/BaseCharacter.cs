@@ -26,7 +26,7 @@ public class BaseCharacter : MonoBehaviour {
 	public float LongWaitTime = 0;
 
 	protected bool selected = false;
-	protected bool areaSelected = false;
+	public bool areaSelected = false;
 	protected bool specialActive = false;
 	public CharacterState curState;
 
@@ -177,6 +177,7 @@ public class BaseCharacter : MonoBehaviour {
 	public virtual void SetSelected(){
 		areaSelected = true;
 		SelectClick();
+		areaSelected = false;
 	}
 
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){

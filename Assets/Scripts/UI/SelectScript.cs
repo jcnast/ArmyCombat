@@ -37,6 +37,7 @@ public class SelectScript : MonoBehaviour {
 		}else if(Input.GetMouseButtonUp(0)){
 			curClick = SelectClickType.None;
 
+			transform.localScale = Vector3.zero;
 			for(int i = 0; i < selectedCharacters.Count; i++){
 				selectedCharacters[i].SetSelected();
 			}
