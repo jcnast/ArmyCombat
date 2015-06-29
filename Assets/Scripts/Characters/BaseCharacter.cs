@@ -26,6 +26,7 @@ public class BaseCharacter : MonoBehaviour {
 	public float LongWaitTime = 0;
 
 	protected bool selected = false;
+	protected bool areaSelected = false;
 	protected bool specialActive = false;
 	public CharacterState curState;
 
@@ -80,10 +81,11 @@ public class BaseCharacter : MonoBehaviour {
 	}
 
 	protected virtual void SelectClick(){
-		if(_Collider.bounds.Contains(input.GetClickPosn)){
+		if(_Collider.bounds.Contains(input.GetClickPosn) || areaSelected){
 			selected = true;
 		}else{
 			selected = false;
+			areaSelected = false;
 		}
 	}
 
@@ -172,13 +174,19 @@ public class BaseCharacter : MonoBehaviour {
 		}
 	}
 
+	public virtual void SetSelected(){
+		areaSelected = true;
+		SelectClick();
+	}
+
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info){
 		//Vector3 syncPosition = Vector3.zero;
-		int syncState = 0;
-		bool syncSpecial = false;
 		if (stream.isWriting)
 		{
 			Debug.Log("writing");
+
+			int syncState = 0;
+			bool syncSpecial = false;
 
 			//syncPosition = transform.position;
 			//stream.Serialize(ref syncPosition);
@@ -193,14 +201,17 @@ public class BaseCharacter : MonoBehaviour {
 		{
 			Debug.Log("recieving");
 
+			int getState = 0;
+			bool getSpecial = false;
+
 			//stream.Serialize(ref syncPosition);
 			//transform.position = syncPosition;
 
-			stream.Serialize(ref syncState);
-			curState = IntToState(syncState);
+			stream.Serialize(ref getState);
+			curState = IntToState(getState);
 
-			stream.Serialize(ref syncSpecial);
-			specialActive = syncSpecial;
+			stream.Serialize(ref getSpecial);
+			specialActive = getSpecial; 
 		}
 		else
 		{
